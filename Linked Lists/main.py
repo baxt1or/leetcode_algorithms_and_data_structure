@@ -33,16 +33,40 @@ class LinkedList:
             slow = slow.next
             fast = fast.next.next
         return slow
+    
+    def remove_existing_nums(self, nums):
+       
+        while self.head and self.head.val in nums:
+            self.head = self.head.next
+        
+        current = self.head
+        prev = None
+
+        while current:
+
+            if current.val in nums:
+                prev.next = current.next
+            else:
+                prev = current
+            current = current.next
+
+        return self.head
 
 
 
 if __name__ == "__main__":
     ls = LinkedList()
 
-    ls.insert_at_beginning(12)
-    ls.insert_at_beginning(54)
-    ls.insert_at_beginning(76)
+    ls.insert_at_beginning(1)
+    ls.insert_at_beginning(2)
+    ls.insert_at_beginning(3)
+    ls.insert_at_beginning(4)
+    ls.insert_at_beginning(5)
+    ls.insert_at_beginning(6)
+    ls.insert_at_beginning(7)
 
     ls.display()
 
-    print(ls.get_middle_element().val)
+    ls.remove_existing_nums([1,2])
+
+    ls.display()
