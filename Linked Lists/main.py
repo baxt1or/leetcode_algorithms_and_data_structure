@@ -51,6 +51,17 @@ class LinkedList:
             current = current.next
 
         return self.head
+    
+    def get_node_index(self, target):
+        current = self.head
+        index = 0
+
+        while current:
+            if current.val == target:
+                return index
+            current = current.next
+            index+=1
+        return -1
 
 
 
@@ -69,4 +80,4 @@ if __name__ == "__main__":
 
     ls.remove_existing_nums([1,2])
 
-    ls.display()
+    print(ls.get_node_index(5))
