@@ -122,20 +122,32 @@ class LinkedList:
 
         return count
 
+    def get_elements(self):
+
+        res = []
+        current = self.head
+
+        while current:
+            res.append(current.val)
+            current = current.next
+        return res
+    
+    def remove_dupl(self):
+        result = [key for key, val in Counter(self.get_elements()).items() if val == 1 ]
+
+        return result
 
 if __name__ == "__main__":
     ls = LinkedList()
 
-    ls.insert_at_beginning(1)
     ls.insert_at_beginning(2)
-    ls.insert_at_beginning(5)
-    ls.insert_at_beginning(4)
+    ls.insert_at_beginning(3)
+    ls.insert_at_beginning(2)
+    ls.insert_at_beginning(1)
    
 
     ls.display()
 
-    ls.remove_duplicates()
+    print(ls.remove_dupl())
 
-    ls.display()
-
-    print(ls.get_pairs())
+    
