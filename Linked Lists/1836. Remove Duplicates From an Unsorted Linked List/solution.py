@@ -1,4 +1,3 @@
-
 from collections import Counter
 # Definition for singly-linked list.
 class ListNode:
@@ -8,22 +7,19 @@ class ListNode:
 class Solution:
     def deleteDuplicatesUnsorted(self, head: ListNode) -> ListNode:
 
-        result = [key for key, val in Counter(self.get_elements(head)).items() if val == 1]
+        count = {}
+        current = head
 
+        while current:
+            count[current.val] = count.get(current.val, 0) + 1 
+            current = current.next
+        
         dummy = ListNode()
         tail = dummy
 
-        for n in result:
-            tail.next = ListNode(n)
-            tail = tail.next
+        for key,val in count.items():
+            if val == 1:
+                tail.next = ListNode(key)
+                tail = tail.next
         return dummy.next
-
-    def get_elements(self, head):
-        current = head
-        res = []
-
-        while current:
-            res.append(current.val)
-            current = current.next
-        return res
         
