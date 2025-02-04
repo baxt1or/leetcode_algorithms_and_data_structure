@@ -1,4 +1,4 @@
-
+from collections import Counter
 # Creating the Node class Data Structure
 class Node:
     def __init__(self, val):
@@ -84,22 +84,58 @@ class LinkedList:
             else:
                 current = current.next
         return self.head
+    
+    def get_all(self):
+        current = self.head
 
+        res = []
+
+        while current:
+            res.append(str(current.val))
+            current = current.next
+
+        num = int("".join(res)) *2 
+        r = [x for x in str(num)]
+
+        dummy = Node()
+        tail = dummy
+
+        for x in r:
+            tail.next = Node(x)
+            tail = tail.next
+        return dummy.next
+    
+    def get_pairs(self):
+        res = []
+        current = self.head
+
+        while current and current.next is not None:
+            if current.val < current.next.val:
+                res.append("Odd")
+            else:
+                res.append("Even")
+            current = current.next
+        
+        result = [res[i] for i in range(len(res)) if i % 2 == 0]
+
+        count = Counter(result)
+
+        return count
 
 
 if __name__ == "__main__":
     ls = LinkedList()
 
     ls.insert_at_beginning(1)
-    ls.insert_at_beginning(1)
-    ls.insert_at_beginning(3)
-    ls.insert_at_beginning(4)
+    ls.insert_at_beginning(2)
     ls.insert_at_beginning(5)
-    ls.insert_at_beginning(6)
-    ls.insert_at_beginning(7)
+    ls.insert_at_beginning(4)
+   
 
     ls.display()
 
     ls.remove_duplicates()
 
     ls.display()
+
+    print(ls.get_pairs())
