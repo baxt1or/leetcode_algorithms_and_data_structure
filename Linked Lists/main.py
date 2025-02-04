@@ -62,6 +62,18 @@ class LinkedList:
             current = current.next
             index+=1
         return -1
+    
+    def reverse(self):
+        prev = None
+        current = self.head
+
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        
+        self.head = prev
 
 
 
@@ -78,6 +90,6 @@ if __name__ == "__main__":
 
     ls.display()
 
-    ls.remove_existing_nums([1,2])
+    ls.reverse()
 
-    print(ls.get_node_index(5))
+    ls.display()
