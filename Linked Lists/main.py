@@ -1,67 +1,33 @@
-from collections import Counter
-# Creating the Node class Data Structure
 class Node:
     def __init__(self, val):
         self.val = val 
         self.next = None
 
-
-# Implementing the Linked List 
 class LinkedList:
     def __init__(self):
         self.head = None
-    
-    def display(self):
-        """ Prints the whole Linked List """
+
+    def append(self, val):
+        new_node = Node(val)
+
+        if self.head is None:
+            self.head = new_node
+            return
+        
+        last = self.head
+
+        while last.next:
+            last = last.next
+        last.next = new_node
+        
+
+    def print_values(self):
         current = self.head
 
         while current:
             print(current.val, end=" -> ")
             current = current.next
         print("None")
-    
-    def insert_at_beginning(self, data):
-        """ Inserts at beginning of the list """
-        new_node = Node(val=data)
-        new_node.next = self.head
-        self.head = new_node
-    
-    def get_middle_element(self):
-        slow = fast = self.head
-
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        return slow
-    
-    def remove_existing_nums(self, nums):
-       
-        while self.head and self.head.val in nums:
-            self.head = self.head.next
-        
-        current = self.head
-        prev = None
-
-        while current:
-
-            if current.val in nums:
-                prev.next = current.next
-            else:
-                prev = current
-            current = current.next
-
-        return self.head
-    
-    def get_node_index(self, target):
-        current = self.head
-        index = 0
-
-        while current:
-            if current.val == target:
-                return index
-            current = current.next
-            index+=1
-        return -1
     
     def reverse(self):
         prev = None
@@ -72,82 +38,26 @@ class LinkedList:
             current.next = prev
             prev = current
             current = next_node
-        
         self.head = prev
     
-    def remove_duplicates(self):
+    def remove_dupl(self):
         current = self.head
 
-        while current and current.next is not None:
+        while current is not None and current.next is not None:
             if current.next.val == current.val:
                 current.next = current.next.next
             else:
                 current = current.next
-        return self.head
-    
-    def get_all(self):
-        current = self.head
-
-        res = []
-
-        while current:
-            res.append(str(current.val))
-            current = current.next
-
-        num = int("".join(res)) *2 
-        r = [x for x in str(num)]
-
-        dummy = Node()
-        tail = dummy
-
-        for x in r:
-            tail.next = Node(x)
-            tail = tail.next
-        return dummy.next
-    
-    def get_pairs(self):
-        res = []
-        current = self.head
-
-        while current and current.next is not None:
-            if current.val < current.next.val:
-                res.append("Odd")
-            else:
-                res.append("Even")
-            current = current.next
         
-        result = [res[i] for i in range(len(res)) if i % 2 == 0]
-
-        count = Counter(result)
-
-        return count
-
-    def get_elements(self):
-
-        res = []
-        current = self.head
-
-        while current:
-            res.append(current.val)
-            current = current.next
-        return res
-    
-    def remove_dupl(self):
-        result = [key for key, val in Counter(self.get_elements()).items() if val == 1 ]
-
-        return result
+        return self.head
 
 if __name__ == "__main__":
     ls = LinkedList()
 
-    ls.insert_at_beginning(2)
-    ls.insert_at_beginning(3)
-    ls.insert_at_beginning(2)
-    ls.insert_at_beginning(1)
+    ls.append(12)
+    ls.append(54)
    
 
-    ls.display()
-
-    print(ls.remove_dupl())
+    ls.print_values()
 
     
