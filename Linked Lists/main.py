@@ -74,6 +74,16 @@ class LinkedList:
             current = next_node
         
         self.head = prev
+    
+    def remove_duplicates(self):
+        current = self.head
+
+        while current and current.next is not None:
+            if current.next.val == current.val:
+                current.next = current.next.next
+            else:
+                current = current.next
+        return self.head
 
 
 
@@ -81,7 +91,7 @@ if __name__ == "__main__":
     ls = LinkedList()
 
     ls.insert_at_beginning(1)
-    ls.insert_at_beginning(2)
+    ls.insert_at_beginning(1)
     ls.insert_at_beginning(3)
     ls.insert_at_beginning(4)
     ls.insert_at_beginning(5)
@@ -90,6 +100,6 @@ if __name__ == "__main__":
 
     ls.display()
 
-    ls.reverse()
+    ls.remove_duplicates()
 
     ls.display()
