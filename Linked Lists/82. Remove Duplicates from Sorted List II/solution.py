@@ -5,26 +5,20 @@ class ListNode:
         self.val = val
         self.next = next
 class Solution:
-    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        odds = []
-        evens = []
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        count = {}
         current = head
-        i = 0
 
         while current:
-            if i % 2 ==0:
-                evens.append(current.val)
-            else:
-                odds.append(current.val)
+            count[current.val] = count.get(current.val, 0)+1
             current = current.next
-            i+=1
         
-        r = evens + odds
+        result = [key for key, val in count.items() if val == 1]
 
         dummy = ListNode()
         tail = dummy
 
-        for n in r:
+        for n in result:
             tail.next = ListNode(n)
             tail = tail.next
         return dummy.next
