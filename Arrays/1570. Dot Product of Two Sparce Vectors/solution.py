@@ -2,13 +2,14 @@ from typing import List
 
 class SparseVector:
     def __init__(self, nums: List[int]):
-        """ Takes only List of integers """
         self.nums = nums
     
-    def dotProduct(self, vec: 'SparseVector') -> int:
-        """ Returns the dot product of two vectors """
-        result = [x*y for x, y in zip(self.nums, vec.nums)]
-        return sum(result)
+    def dotProduct(self, vec) -> int:
+        result = 0
+
+        for i in range(len(vec.nums)):
+            result += (self.nums[i] * vec.nums[i])
+        return result
 
 
 """ Example Use """
