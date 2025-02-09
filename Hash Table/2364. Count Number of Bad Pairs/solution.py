@@ -8,17 +8,17 @@ class Solution:
         for i in range(len(nums)):
             key = nums[i] - i
             count[key] = count.get(key, 0) +1
+        
+        result = 0
 
         for key, val in count.items():
-            count[key] = val * (val - 1)  / 2
+            result += val * (val - 1)  / 2
         
         n = len(nums)
 
         total = n * (n-1) /2
 
-        total_good_pairs = sum(count.values())
-
-        return int(total - total_good_pairs)
+        return int(total - result)
 
 
 if __name__ == "__main__":
