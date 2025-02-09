@@ -30,6 +30,7 @@ class Solution:
         
 
 if __name__ == "__main__":
+    
     key = "the quick brown fox jumps over the lazy dog"
     message = "vkbs bs t suepuv"
     print(Solution().decodeMessage(key, message))
