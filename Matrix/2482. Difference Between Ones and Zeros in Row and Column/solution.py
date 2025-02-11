@@ -8,7 +8,6 @@ class Solution:
         
     
         for i in range(len(grid)):
-          row = []
           for j in range(len(grid[0])):
             grid[i][j] = ones_row[i] + ones_col[j] - (len(ones_row) - ones_row[i])  - (len(ones_col) - ones_col[j])
         return grid
