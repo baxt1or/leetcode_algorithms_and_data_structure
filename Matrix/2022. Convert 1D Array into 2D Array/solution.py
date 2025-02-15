@@ -8,10 +8,11 @@ class Solution:
 
         grid = [[0]*n for _ in range(m)]
 
-        for i in range(m):
-            for j in range(n):
-              idx = i *n +j
-              grid[i][j] = original[idx]
+        for i in range(m*n):
+           row = i // n
+           col = i % n
+
+           grid[row][col] = original[i]
         
         return grid
     
