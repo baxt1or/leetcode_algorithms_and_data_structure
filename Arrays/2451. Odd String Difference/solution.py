@@ -3,7 +3,6 @@ from typing import List
 class Solution:
     def oddString(self, words: List[str]) -> str:
 
-        
         def dff(word):
             vocab = {chr(i+97):i for i in range(26)}
             res = []
@@ -17,7 +16,6 @@ class Solution:
         res = []
 
         diffs = {i:dff(words[i]) for i in range(len(words))}
-
 
         for val in diffs.values():
             if val in seen:
