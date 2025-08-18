@@ -4,22 +4,30 @@ import heapq
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         
+        res = []
 
-        max_heap = [-x for x in nums]
+        for n in nums:
+            heapq.heappush(res, -n)
+                
+        ans = []
+        i = 0
 
-        heapq.heapify(max_heap)
-
+        while i != k:
+            val = -heapq.heappop(res)
+            ans.append(val)
+            i+=1
         
-        for _ in range(k-1):
-            -heapq.heappop(max_heap)
-        
-        return -max_heap[0]
-    
+        return ans[-1]
 
 
 if __name__ == '__main__':
-
-    """ Example 2: """
+    """ Example 1: """
     nums = [3,2,1,5,6,4]
     k = 2
+    print(Solution().findKthLargest(nums, k))
+
+
+    """ Example 2: """
+    nums = [3,2,3,1,2,4,5,5,6]
+    k = 4
     print(Solution().findKthLargest(nums, k))
