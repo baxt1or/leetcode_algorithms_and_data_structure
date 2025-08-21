@@ -1,22 +1,17 @@
 class Solution:
     def removeDuplicates(self, s: str) -> str:
-      stack = []
-      
-      
-      for i in range(len(s)):
-        if stack and stack[-1] == s[i]:
-          stack.pop()
-        else:
-          stack.append(s[i])
-      return "".join(stack)
+        
+        stack = []
 
+        for c in s:
+            if stack and stack[-1] == c:
+                stack.pop()
+            else:
+                stack.append(c)
+        
+        return "".join(stack)
+    
 
-if __name__ == "__main__":
-  
-  """ Example 1: """
-  s = 'abbaca'
-  print(Solution().removeDuplicates(s))
-  
-  s = "azxxzy"
-  """ Example 2: """
-  print(Solution().removeDuplicates(s))
+s = "abbaca"
+# output: ca
+print(Solution().removeDuplicates(s))
